@@ -53,7 +53,7 @@ cp .env.example .env
 
 Format `.env` :
 ```
-OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxx
+OPENROUTER_API_KEY=sk-xxxxxxxxxxxxxxxxxxxx
 ```
 
 Sesuaikan `sk-xxxxxxxxxxxxxxxxxxxx` dengan API_Key kalian
