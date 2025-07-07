@@ -32,8 +32,9 @@
 
 ### Cara Instalasi
 
-Note:
-- Minimum versi nodejs : v18.20.6
+*Note:*
+- Minimum versi nodejs : *v18.20.6*
+
 Jika masih jadul, update dahulu:
 ```bash
 curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
@@ -82,6 +83,11 @@ node index.js
 
 5. **Scan QR Code pakai WhatsApp di HP**  
 Masuk ke WhatsApp > Perangkat tertaut > Scan QR
+
+6. Salin service ke systemd
+```bash
+cp airabot.service /etc/systemd/system/airabot.service
+```
 
 ---
 
