@@ -1,0 +1,16 @@
+[Unit]
+Description=AiraBot WhatsApp Bot
+After=network.target
+
+[Service]
+User=znand
+WorkingDirectory=/home/znand/AiraBot #edit ke workdir kalian
+ExecStart=/usr/bin/node index.js
+Restart=always
+Environment=NODE_ENV=production
+Environment=PATH=/usr/bin:/usr/local/bin
+StandardOutput=inherit
+StandardError=inherit
+
+[Install]
+WantedBy=multi-user.target
