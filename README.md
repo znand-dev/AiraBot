@@ -1,12 +1,12 @@
 
-# 💫 AiraBot - WhatsApp AI for Fun & Music 🎶
+## 💫 AiraBot - WhatsApp AI for Fun & Music 🎶
 
 >  *"Halo~ Perkenalkan aku AiraBot, waifu digital kamu di WhatsApp~"*  
 > Bot WhatsApp anime-style yang bisa ngobrol pakai AI, putar lagu dari YouTube, dan bikin grup kamu makin hidup
 
 ---
 
-## Fitur Utama
+### Fitur Utama
 
 | Perintah | Fungsi | Keterangan |
 |----------|--------|------------|
@@ -20,7 +20,7 @@
 
 ---
 
-## Teknologi yang Digunakan
+### Teknologi yang Digunakan
 
 - [whatsapp-web.js](https://github.com/pedroslopez/whatsapp-web.js) – koneksi ke WhatsApp via Web QR
 - `yt-dlp"` – ambil audio dari YouTube
@@ -30,7 +30,7 @@
 
 ---
 
-## Cara Instalasi
+### Cara Instalasi
 
 1. **Clone repo-nya:**
 
@@ -43,6 +43,11 @@ cd AiraBot
 
 ```bash
 npm install
+```
+
+```bash
+sudo apt install ffmpeg -y
+pip install yt-dlp
 ```
 
 3. **Salin file `.env` dan isi API Key:**
@@ -70,7 +75,7 @@ Masuk ke WhatsApp > Perangkat tertaut > Scan QR
 
 ---
 
-## Contoh Penggunaan
+### Contoh Penggunaan
 
 ```
 !ai apa itu lubang hitam?
@@ -82,25 +87,23 @@ Masuk ke WhatsApp > Perangkat tertaut > Scan QR
 
 ---
 
-## ⚠Disclaimer
+### ⚠Disclaimer
 
 - ❌ Bot ini **tidak menggunakan WhatsApp Business API resmi**  
 - ❌ Jangan digunakan untuk spam atau promosi ilegal
 - ✅ Cocok untuk penggunaan pribadi dan grup kecil
 
 ---
-## Credits
+### Credits
 
 - Built by [znand-dev](https://github.com/znand-dev)
 - Powered by [whatsapp-web.js](https://github.com/pedroslopez/whatsapp-web.js)
 - OpenAI via [OpenRouter](https://openrouter.ai)
 - YouTube download via [yt-dlp](https://github.com/yt-dlp/yt-dlp)
 
-
-
 ---
 
-## License
+### License
 
 MIT License – Feel free to fork, modify, and contribute.
 
