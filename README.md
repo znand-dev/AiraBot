@@ -101,6 +101,8 @@ sudo systemctl start airabot
 sudo systemctl status airabot
 ```
 
+![Airabotservice](./assets/airabotservice.png)
+
 Jika kalian menemukan error seperti ini:
 
 ```
