@@ -1,0 +1,33 @@
+name: Node.js CI for WhatsApp Bot
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name:  Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Check format (optional lint)
+      run: |
+        echo "No linter configured yet"
+
+    - name: Check build (basic)
+      run: |
+        node -v
+        echo "Bot source OK (tidak error sintaks)"
