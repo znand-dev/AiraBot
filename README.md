@@ -34,6 +34,11 @@
 
 Note:
 - Minimum versi nodejs : v18.20.6
+Jika masih jadul, update dahulu:
+```bash
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt install -y nodejs
+```
 
 1. **Clone repo-nya:**
 
