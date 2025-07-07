@@ -35,8 +35,8 @@
 1. **Clone repo-nya:**
 
 ```bash
-git clone https://github.com/znand-dev/airabot.git
-cd airabot
+git clone https://github.com/znand-dev/AiraBot.git)
+cd AiraBot
 ```
 
 2. **Install dependencies:**
@@ -49,6 +49,7 @@ npm install
 
 ```bash
 cp .env.example .env
+nano .env
 ```
 
 Format `.env` :
