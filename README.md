@@ -32,6 +32,9 @@
 
 ### Cara Instalasi
 
+Note:
+- Minimum versi nodejs : v18.20.6
+
 1. **Clone repo-nya:**
 
 ```bash
