@@ -20,3 +20,5 @@ tmp/
 .DS_Store
 Thumbs.db
 
+.wwebjs_auth/
+.wwebjs_cache/

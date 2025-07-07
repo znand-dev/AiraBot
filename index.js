@@ -7,26 +7,30 @@ const client = new Client({
     authStrategy: new LocalAuth()
 });
 
-client.on('qr', qr => {
-    qrcode.generate(qr, { small: true });
-});
+client.on('qr', qr => qrcode.generate(qr, { small: true }));
+client.on('ready', () => console.log('Bot ready! ✅'));
 
-client.on('ready', () => {
-    console.log('Bot ready! ✅');
-});
+const commands = new Map();
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+for (const file of commandFiles) {
+    const command = require(`./commands/${file}`);
+    commands.set(command.name, command);
+}
 
 client.on('message', async msg => {
     if (!msg.body.startsWith("!")) return;
-
     const args = msg.body.slice(1).trim().split(/ +/);
-    const command = args.shift().toLowerCase();
+    const commandName = args.shift().toLowerCase();
+    const command = commands.get(commandName);
+
+    if (!command) return msg.reply(`❌ Unknown command: ${commandName}`);
 
     try {
-        const commandFile = require(`./commands/${command}.js`);
-        await commandFile.run(client, msg, args);
+        await command.execute(client, msg, args);
     } catch (err) {
-        console.log("❌ Unknown command:", command);
+        console.error(`❌ Error di command ${commandName}:`, err);
+        msg.reply("❌ Gagal jalanin perintah.");
     }
 });
 
-client.initialize();
+client.initialize(); // ✅ WAJIB ADA!
