@@ -1,0 +1,27 @@
+{
+  "extends": ["config:base"],
+  "labels": ["dependencies", "renovate"],
+  "automerge": false,
+  "dependencyDashboard": true,
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["^@?types/"],
+      "groupName": "📦 TypeScript Types",
+      "automerge": true
+    },
+    {
+      "matchDepTypes": ["devDependencies"],
+      "groupName": "🛠️ Dev Dependencies"
+    },
+    {
+      "matchDepTypes": ["dependencies"],
+      "groupName": "🚀 App Dependencies"
+    }
+  ],
+  "prHourlyLimit": 4,
+  "prConcurrentLimit": 5,
+  "schedule": ["after 9am and before 6pm on weekdays"],
+  "rebaseWhen": "behind-base-branch",
+  "timezone": "Asia/Jakarta",
+  "platformAutomerge": true
+}
