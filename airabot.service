@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 User=znand
-WorkingDirectory=/home/znand/AiraBot #edit ke workdir kalian
+WorkingDirectory=/home/znand/AiraBot
 ExecStart=/usr/bin/node index.js
 Restart=always
 Environment=NODE_ENV=production
