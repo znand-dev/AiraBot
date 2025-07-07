@@ -35,7 +35,7 @@
 1. **Clone repo-nya:**
 
 ```bash
-git clone https://github.com/znand-dev/AiraBot.git)
+git clone https://github.com/znand-dev/AiraBot.git
 cd AiraBot
 ```
 
