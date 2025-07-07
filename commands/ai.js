@@ -1,22 +1,33 @@
-const { OpenAI } = require("openai");
+// commands/ai.js
+const { OpenAI } = require('openai');
+const fs = require('fs');
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENROUTER_API_KEY, // Ambil dari .env
+  baseURL: 'https://openrouter.ai/api/v1',
 });
 
-exports.run = async (client, msg, args) => {
+module.exports = {
+  name: "ai",
+  description: "Ngobrol bareng AI",
+  async execute(client, msg, args) {
     const prompt = args.join(" ");
-    if (!prompt) return msg.reply("❗ Tulis pesan dulu bro");
+    if (!prompt) return msg.reply("❌ Masukin teks dong buat ngobrol!");
 
     try {
-        const response = await openai.chat.completions.create({
-            model: "gpt-4", // atau gpt-3.5-turbo kalau gpt-4 mahal
-            messages: [{ role: "user", content: prompt }],
-        });
+      const completion = await openai.chat.completions.create({
+        model: "openrouter/cypher-alpha:free",
+        messages: [
+          { role: "system", content: "Lo adalah AI yang gaul dan nyantai banget kayak anak tongkrongan. Sertakan emote-emote juga dan nyambung" },
+          { role: "user", content: prompt }
+        ],
+      });
 
-        msg.reply("🧠 " + response.choices[0].message.content);
+      const reply = completion.choices[0].message.content;
+      await msg.reply(`🧠 ${reply}`);
     } catch (err) {
-        msg.reply("⚠️ Gagal respon, cek API key bro");
-        console.log(err.message);
+      console.error("❌ AI Error:", err);
+      await msg.reply("❌ Ada error bro pas manggil AI.");
     }
+  },
 };

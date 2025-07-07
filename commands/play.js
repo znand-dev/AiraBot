@@ -1,26 +1,55 @@
-const playdl = require("play-dl");
-const ffmpeg = require("fluent-ffmpeg");
-const fs = require("fs");
+const { exec } = require("child_process");
 const path = require("path");
+const fs = require("fs");
+const { MessageMedia } = require("whatsapp-web.js");
 
-exports.run = async (client, msg, args) => {
-    const query = args.join(" ");
-    if (!query) return msg.reply("❗ Masukin judul lagu bro.");
+module.exports = {
+    name: "play",
+    description: "Cari dan kirim lagu dari YouTube",
+    async execute(client, msg, args) {
+        const query = args.join(" ");
+        if (!query) return msg.reply("❌Error: Masukkan judul lagu dulu bre");
 
-    const yt_info = await playdl.search(query, { limit: 1 });
-    if (!yt_info[0]) return msg.reply("❌ Lagu gak ketemu bro.");
+        const id = Date.now();
+        const outputPath = `media/${id}.mp3`;
 
-    const video = yt_info[0];
-    const stream = await playdl.stream(video.url);
-    const filename = `media/${Date.now()}.mp3`;
-    const output = fs.createWriteStream(filename);
+        msg.reply("🔍 Nyari & download lagunya dulu ya...");
 
-    ffmpeg(stream.stream)
-        .audioBitrate(128)
-        .saveToFile(filename)
-        .on('end', async () => {
-            await msg.reply(`🎵 Judul: ${video.title}`);
-            await msg.reply(fs.createReadStream(filename), { sendAudioAsVoice: false });
-            fs.unlinkSync(filename);
+        // Pakai JSON biar dapet data video
+        const cmd = `yt-dlp -x --audio-format mp3 --print-json -o "media/${id}.%(ext)s" "ytsearch1:${query}"`;
+
+        exec(cmd, async (error, stdout, stderr) => {
+            if (error) {
+                console.error("YT-DLP Error:", stderr);
+                return msg.reply("❌Error: Gagal download lagu!");
+            }
+
+            let videoInfo = null;
+            try {
+                videoInfo = JSON.parse(stdout);
+            } catch (e) {
+                console.error("❌Error: Gagal parse JSON dari yt-dlp:", e);
+                return msg.reply("❌Error: Gagal ambil info video.");
+            }
+
+            const title = videoInfo.title || query;
+            const videoUrl = videoInfo.webpage_url || "https://youtube.com";
+
+            if (!fs.existsSync(outputPath)) {
+                return msg.reply("❌Error: File MP3 gak ketemu bro.");
+            }
+
+            try {
+                const media = MessageMedia.fromFilePath(path.resolve(outputPath));
+   
+                await client.sendMessage(msg.from, `🎵 *${title}*\n🔗 ${videoUrl}\n\n📺 skutt coba cek lagunya bre`);
+                await client.sendMessage(msg.from, media);
+
+                fs.unlinkSync(outputPath); // optional hapus
+            } catch (err) {
+                console.error("Send error:", err);
+                msg.reply("❌ Gagal kirim file audio.");
+            }
         });
+    }
 };
