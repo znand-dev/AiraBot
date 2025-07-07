@@ -84,7 +84,7 @@ node index.js
 5. **Scan QR Code pakai WhatsApp di HP**  
 Masuk ke WhatsApp > Perangkat tertaut > Scan QR
 
-6. Salin service ke systemd
+6. Setelah bot ready dan running setelah ditest, silakan salin service ke systemd
 ```bash
 cp airabot.service /etc/systemd/system/airabot.service
 ```
