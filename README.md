@@ -1,4 +1,4 @@
-![Animated](./assets/animated.gif)
+![Animated](./assets/background8.gif)
 ## 💫 AiraBot - WhatsApp AI for Fun & Music 🎶
 
 >  *"Halo~ Perkenalkan aku AiraBot, waifu digital kamu di WhatsApp~"*  
