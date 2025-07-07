@@ -1,7 +1,7 @@
 
 # 💫 AiraBot - WhatsApp AI for Fun & Music 🎶
 
-> 💕 *"Hai~ Aku AiraBot, waifu digital kamu di WhatsApp~"*  
+>  *"Halo~ Perkenalkan aku AiraBot, waifu digital kamu di WhatsApp~"*  
 > Bot WhatsApp anime-style yang bisa ngobrol pakai AI, putar lagu dari YouTube, dan bikin grup kamu makin hidup
 
 ---
