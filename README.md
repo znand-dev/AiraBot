@@ -86,7 +86,7 @@ Masuk ke WhatsApp > Perangkat tertaut > Scan QR
 
 6. **Setelah bot ready dan running setelah ditest, silakan salin service ke systemd**
 ```bash
-cp airabot.service /etc/systemd/system/airabot.service
+sudo cp airabot.service /etc/systemd/system/airabot.service
 ```
 
 Start & Check service:
