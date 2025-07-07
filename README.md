@@ -8,15 +8,15 @@
 
 ## Fitur Utama
 
-| Perintah | Fungsi |
-|----------|--------|
-| `!ai [pesan]` | 💬 Chat bareng AI (GPT-3.5/GPT-4 via OpenAI)  |
-| `!play [judul lagu]` | 🎶 Download dan kirim audio dari YouTube  |
-| `!menu` | 📋 Lihat semua perintah yang tersedia  |
-| `!sticker` | 🖼️ Ubah gambar jadi stiker WA  |
-| `!joke` | 😂 Kirim lelucon receh  |
-| `!quote` | ✨ Kutipan anime/motivasi  |
-| *(dan fitur lainnya akan terus bertambah!)* |
+| Perintah | Fungsi | Keterangan |
+|----------|--------|------------|
+| `!ai [pesan]` | 💬 Chat bareng AI (openrouter/cypher-alpha:free)  | Tersedia |
+| `!play [judul lagu]` | 🎶 Download dan kirim audio dari YouTube  | Tersedia |
+| `!menu` | 📋 Lihat semua perintah yang tersedia  | Tersedia |
+| `!sticker` | 🖼️ Ubah gambar jadi stiker WA  | Masih tahap development |
+| `!joke` | 😂 Kirim lelucon receh  | Masih tahap development |
+| `!quote` | ✨ Kutipan anime/motivasi  | Masih tahap development |
+| *(dan fitur lainnya akan terus bertambah!)* | 
 
 ---
 
