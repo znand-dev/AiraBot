@@ -111,6 +111,11 @@ YT-DLP Error: ERROR: [youtube] tOMFR0nQt48: Sign in to confirm you’re not a bo
 - kemudian edit script commands/play.js dan atur command yt-dlp (tambahkan flag --cookies cookies.txt)
 - restart service
 
+atau jika kalian mendapatkan barcode baru saat ```node index.js``` padahal tadinya sudah login, silakan hapus file .wwebjs_auth/ .wwebjs_cache/ 
+```
+sudo rm -rf .wwebjs_auth/ .wwebjs_cache/
+```
+
 ---
 
 ### Contoh Penggunaan
