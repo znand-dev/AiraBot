@@ -46,6 +46,8 @@ npm install
 ```
 
 ```bash
+chmod +x install-deps.sh
+./install-deps.sh
 sudo apt install ffmpeg -y
 pip install yt-dlp
 ```
