@@ -33,7 +33,7 @@
 ### Cara Instalasi
 
 *Note:*
-- Minimum versi nodejs : *v18.20.6*
+- Minimum versi nodejs : **v18.20.6**
 
 Jika masih jadul, update dahulu:
 ```bash
