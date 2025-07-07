@@ -1,4 +1,22 @@
+# Node modules
 node_modules/
-.session/
+
+# Env & session auth
 .env
+.env.example
+.session/
+*.session.json
+
+# Media/temp file
+media/
+downloads/
+tmp/
+
+# VSCode or editor settings
+.vscode/
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
 
