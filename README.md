@@ -101,6 +101,16 @@ sudo systemctl start airabot
 sudo systemctl status airabot
 ```
 
+Jika kalian menemukan error seperti ini:
+
+```
+YT-DLP Error: ERROR: [youtube] tOMFR0nQt48: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication
+```
+- silakan kalian buka https://youtube.com kemudian export cookies nya pakai ekstensi dalam format Netscape
+- Buat file baru di root directory ```cookies.txt``` lalu paste cookies nya ke file itu
+- kemudian edit script commands/play.js dan atur command yt-dlp (tambahkan flag --cookies cookies.txt)
+- restart service
+
 ---
 
 ### Contoh Penggunaan
