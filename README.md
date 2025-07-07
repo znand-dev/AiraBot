@@ -70,7 +70,7 @@ Masuk ke WhatsApp > Perangkat tertaut > Scan QR
 
 ---
 
-## 💡 Contoh Penggunaan
+## Contoh Penggunaan
 
 ```
 !ai apa itu lubang hitam?
@@ -82,11 +82,21 @@ Masuk ke WhatsApp > Perangkat tertaut > Scan QR
 
 ---
 
-## ⚠️ Disclaimer
+## ⚠Disclaimer
 
 - ❌ Bot ini **tidak menggunakan WhatsApp Business API resmi**  
 - ❌ Jangan digunakan untuk spam atau promosi ilegal
 - ✅ Cocok untuk penggunaan pribadi dan grup kecil
+
+---
+## Credits
+
+- Built by [znand-dev](https://github.com/znand-dev)
+- Powered by [whatsapp-web.js](https://github.com/pedroslopez/whatsapp-web.js)
+- OpenAI via [OpenRouter](https://openrouter.ai)
+- YouTube download via [yt-dlp](https://github.com/yt-dlp/yt-dlp)
+
+
 
 ---
 
