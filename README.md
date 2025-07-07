@@ -23,7 +23,7 @@
 ## Teknologi yang Digunakan
 
 - [whatsapp-web.js](https://github.com/pedroslopez/whatsapp-web.js) – koneksi ke WhatsApp via Web QR
-- `play-dl` – ambil audio dari YouTube
+- `yt-dlp"` – ambil audio dari YouTube
 - `ffmpeg` – konversi audio
 - `dotenv` – simpan kredensial API
 - `OpenAI SDK` – integrasi chat GPT
