@@ -18,7 +18,7 @@ Untuk pemilihan model AI, saya sarankan gunakan model AI dari OpenAI. Karena leb
 
 | Perintah | Fungsi | Keterangan |
 |----------|--------|------------|
-| `!ai [pesan]` | 💬 Chat bareng AI (openrouter/cypher-alpha:free)  | Tersedia |
+| `!ai [pesan]` | 💬 Chat bareng AI | Tersedia |
 | `!play [judul lagu]` | 🎶 Download dan kirim audio dari YouTube  | Tersedia |
 | `!menu` | 📋 Lihat semua perintah yang tersedia  | Tersedia |
 | `!sticker` | 🖼️ Ubah gambar jadi stiker WA  | Masih tahap development |
