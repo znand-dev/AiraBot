@@ -14,6 +14,8 @@
 - Mendukung provider: `openai` & `openrouter.ai`
 - Modular command system (`commands/` folder)
 
+Untuk pemilihan model AI, saya sarankan gunakan model AI dari OpenAI. Karena lebih responsif, cerdas, hemat dan cepat.
+
 | Perintah | Fungsi | Keterangan |
 |----------|--------|------------|
 | `!ai [pesan]` | 💬 Chat bareng AI (openrouter/cypher-alpha:free)  | Tersedia |
