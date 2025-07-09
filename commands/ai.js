@@ -1,33 +1,30 @@
 // commands/ai.js
-const { OpenAI } = require('openai');
-const fs = require('fs');
-
-const openai = new OpenAI({
-  apiKey: process.env.OPENROUTER_API_KEY, // Ambil dari .env
-  baseURL: 'https://openrouter.ai/api/v1',
-});
+const { aiClient } = require('../lib/aiClient');
 
 module.exports = {
   name: "ai",
   description: "Ngobrol bareng AI",
   async execute(client, msg, args) {
     const prompt = args.join(" ");
-    if (!prompt) return msg.reply("❌ Masukin teks dong buat ngobrol!");
+    if (!prompt) return msg.reply("❌Error: Masukin teks dong buat ngobrol ama AI");
 
     try {
-      const completion = await openai.chat.completions.create({
-        model: "openrouter/cypher-alpha:free",
+      const response = await aiClient.chat.completions.create({
+        model: process.env.AI_MODEL,
         messages: [
-          { role: "system", content: "Lo adalah AI yang gaul dan nyantai banget kayak anak tongkrongan. Sertakan emote-emote juga dan nyambung" },
-          { role: "user", content: prompt }
+          {
+            role: "system",
+            content: process.env.AI_SYSTEM_PROMPT, // ⬅️ Pure dari .env, tanpa default
+          },
+          { role: "user", content: prompt },
         ],
       });
 
-      const reply = completion.choices[0].message.content;
+      const reply = response.choices[0].message.content;
       await msg.reply(`🧠 ${reply}`);
     } catch (err) {
-      console.error("❌ AI Error:", err);
-      await msg.reply("❌ Ada error bro pas manggil AI.");
+      console.error("❌ Error AI:", err);
+      await msg.reply("❌ Error cuyy, AI-nya lagi mabok.");
     }
   },
 };

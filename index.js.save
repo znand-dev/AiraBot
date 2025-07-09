@@ -13,7 +13,14 @@ if (!AI_API_KEY) {
   process.exit(1);
 }
 
-const { aiClient } = require('./lib/aiClient');
+let aiClient;
+if (AI_PROVIDER === 'openai') {
+  const { OpenAIApi, Configuration } = require('openai');
+  aiClient = new OpenAIApi(new Configuration({ apiKey: AI_API_KEY }));
+} else {
+  const { OpenRouterAPI } = require('openrouter');
+  aiClient = new OpenRouterAPI({ apiKey: AI_API_KEY });
+}
 
 function safeParse(text) {
   if (PARSE_JSON === 'true') {
@@ -61,4 +68,4 @@ client.on('message', async msg => {
     }
 });
 
-client.initialize(); //
+client.initialize(); // ✅ WAJIB ADA!

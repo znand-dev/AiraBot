@@ -6,15 +6,19 @@
   "scripts": {
     "start": "node index.js"
   },
-  "keywords": ["whatsapp", "bot", "openai", "yt-dlp", "music"],
+  "keywords": [
+    "whatsapp",
+    "bot",
+    "openai",
+    "yt-dlp",
+    "music"
+  ],
   "author": "znand-dev",
   "license": "MIT",
   "dependencies": {
-    "dotenv": "^17.0.1",
+    "dotenv": "^17.1.0",
     "openai": "^4.29.1",
     "qrcode-terminal": "^0.12.0",
     "whatsapp-web.js": "^1.22.1"
-  },
-  "devDependencies": {}
+  }
 }
-
