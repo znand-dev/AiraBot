@@ -111,9 +111,9 @@ Masuk ke WhatsApp > Perangkat tertaut > Scan QR
 ---
 ### Perbaikan masalah
 
-1. Jika kamu mengalami masalah saat start, berupa `...` silakan buka yt di https://youtube.com dan export cookies ke cookies.txt di root directory, lalu restart kembali.
+1. Jika kamu mengalami masalah saat start, berupa `need to sign in` silakan buka yt di https://youtube.com dan export cookies ke cookies.txt di root directory, lalu restart kembali.
 2. Jika kamu mengalami masalah saat start `node index.js` berupa QR Code kembali muncul padahal sebelumnya sudah login.
-ssilakan hapus `_wweb_auth` dan `_wweb_cache`
+ssilakan hapus `.wwebjsauth` dan `.wwebjs_cache`
 
 ---
 
