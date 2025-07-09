@@ -6,7 +6,13 @@
 
 ---
 
-### Fitur Utama
+### Fitur
+
+- Chatting dengan AI langsung dari WhatsApp
+- Bisa ganti model AI via `.env`
+- Prompt AI bisa dikustom lewat `.env`
+- Mendukung provider: `openai` & `openrouter.ai`
+- Modular command system (`commands/` folder)
 
 | Perintah | Fungsi | Keterangan |
 |----------|--------|------------|
@@ -28,6 +34,16 @@
 - `dotenv` – simpan kredensial API
 - `OpenAI SDK` – integrasi chat GPT
 
+---
+
+### Persyaratan
+
+- Node.js v18+ ✅
+- HP dengan WhatsApp aktif
+- Akun & API key dari:
+  - [OpenAI](https://platform.openai.com/)
+  - atau [OpenRouter.ai](https://openrouter.ai/)
+    
 ---
 
 ### Cara Instalasi
@@ -86,6 +102,13 @@ Masuk ke WhatsApp > Perangkat tertaut > Scan QR
 !quote
 !sticker
 ```
+
+---
+### Perbaikan masalah
+
+1. Jika kamu mengalami masalah saat start, berupa `...` silakan buka yt di https://youtube.com dan export cookies ke cookies.txt di root directory, lalu restart kembali.
+2. Jika kamu mengalami masalah saat start `node index.js` berupa QR Code kembali muncul padahal sebelumnya sudah login.
+ssilakan hapus `_wweb_auth` dan `_wweb_cache`
 
 ---
 
