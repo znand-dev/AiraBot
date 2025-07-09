@@ -75,9 +75,12 @@ cp .env.example .env
 nano .env
 ```
 
-Format `.env` :
-```
-OPENROUTER_API_KEY=sk-xxxxxxxxxxxxxxxxxxxx
+```nano
+AI_PROVIDER=openai
+AI_API_KEY=sk-xxxxxxx...
+AI_MODEL=gpt-4.1-mini
+AI_SYSTEM_PROMPT=Kamu adalah asisten AI khusus di WhatsApp yang sopan dan helpful
+PARSE_JSON=false
 ```
 
 Sesuaikan `sk-xxxxxxxxxxxxxxxxxxxx` dengan API_Key kalian
