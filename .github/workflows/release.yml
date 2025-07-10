@@ -35,16 +35,20 @@ jobs:
         run: |
           mkdir -p dist
           pkg . --targets ${{ matrix.node-target }} --output dist/airabot-${{ matrix.node-target }}
-          sha256sum dist/airabot-* > dist/checksum.txt
 
-      - name: Release with overwrite
+      - name: Generate checksum
+        run: |
+          cd dist
+          sha256sum airabot-* > checksum.txt
+
+      - name: Upload release
         uses: ncipollo/release-action@v1
         with:
           tag: ${{ github.ref_name }}
-          name: Release ${{ github.ref_name }}
+          name: AiraBot ${{ github.ref_name }}
           body: |
-            🔄 Auto release by GitHub Actions
-            🛠️ Built with pkg
+            🛠️ Auto Release AiraBot via GitHub Actions
+            ✅ Built with pkg for ${{ matrix.node-target }}
           artifacts: |
             dist/airabot-*
             dist/checksum.txt
