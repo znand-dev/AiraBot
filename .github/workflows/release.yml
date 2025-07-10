@@ -34,7 +34,7 @@ jobs:
           tar -czvf AiraBot-${GITHUB_REF_NAME#v}-${{ matrix.platform }}.tar.gz AiraBot-${GITHUB_REF_NAME#v}-${{ matrix.platform }}
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: AiraBot-${{ matrix.platform }}
           path: AiraBot-${GITHUB_REF_NAME#v}-${{ matrix.platform }}.tar.gz
@@ -47,7 +47,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Download all artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           path: artifacts
 
