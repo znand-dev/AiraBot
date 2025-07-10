@@ -1,0 +1,56 @@
+# .github/workflows/release.yml
+name: Build & Release AiraBot Binary
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+     paths:
+      - 'package.json'
+      - 'index.js'
+      - 'lib/**
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-target:
+          - node18-linux-x64
+          - node18-linux-arm64
+          - node18-linux-armv6
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install pkg
+        run: npm install -g pkg
+
+      - name: Build binary
+        run: |
+          mkdir -p dist
+          pkg . --targets ${{ matrix.node-target }} --output dist/airabot-${{ matrix.node-target }}
+           echo "changelog<<EOF" >> $GITHUB_OUTPUT
+           echo "6d50eaa added systemd service" >> $GITHUB_OUTPUT
+           echo "1576c2a added .env support" >> $GITHUB_OUTPUT
+           echo "8837dc2 Create install-deps.sh" >> $GITHUB_OUTPUT
+           echo "EOF" >> $GITHUB_OUTPUT
+ 
+      - name: Upload binary to release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/airabot-${{ matrix.node-target }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
