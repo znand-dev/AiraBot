@@ -42,12 +42,14 @@ jobs:
           cd dist
           sha256sum * > checksum.txt
 
-      - name: Upload binaries to GitHub Release
-        uses: softprops/action-gh-release@v2
+      - name: Upload Release Assets
+        uses: ncipollo/release-action@v1
         with:
-          files: |
-            dist/*
-            dist/checksum.txt 
-          overwrite: true
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
+          artifacts: |
+            dist/airabot-*
+            dist/checksum.txt
+        allowUpdates: true
+        removeArtifacts: true
+        token: ${{ secrets.GITHUB_TOKEN }}
+
