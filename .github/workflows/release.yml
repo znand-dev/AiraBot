@@ -12,8 +12,9 @@ jobs:
       matrix:
         node-target:
           - node18-linux-x64
+            arch: amd64
           - node18-linux-arm64
-          - node18-linux-armv7
+            arch: arm64
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
