@@ -4,7 +4,7 @@
   "description": "WhatsApp Bot with Play, AI, and Fun Features",
   "main": "index.js",
   "bin": {
-    "aira": "./index.js"
+    "aira": "index.js"
   },
   "preferGlobal": true,
   "scripts": {
