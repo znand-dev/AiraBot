@@ -37,9 +37,16 @@ jobs:
           mkdir -p dist
           pkg . --targets ${{ matrix.target }} --output dist/airabot-${{ matrix.target }}
 
+      - name: Generate checksum.txt
+        run: |
+          cd dist
+          sha256sum * > checksum.txt
+
       - name: Upload binaries to GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/*
+          files: |
+            dist/*
+            dist/checksum.txt 
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
