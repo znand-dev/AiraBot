@@ -1,0 +1,87 @@
+name: Build and Release AiraBot
+
+on:
+  push:
+    tags:
+      - 'v*' # Trigger pada tag versi (v1.0.0, dll)
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        platform: [linux-amd64, linux-arm64]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project (jika ada)
+        run: npm run build
+
+      - name: Package artifacts
+        run: |
+          mkdir -p AiraBot-${GITHUB_REF_NAME#v}-${{ matrix.platform }}
+          cp -r index.js commands lib node_modules package.json package-lock.json .env.example README.md airabot.service AiraBot-${GITHUB_REF_NAME#v}-${{ matrix.platform }}/
+          tar -czvf AiraBot-${GITHUB_REF_NAME#v}-${{ matrix.platform }}.tar.gz AiraBot-${GITHUB_REF_NAME#v}-${{ matrix.platform }}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: AiraBot-${{ matrix.platform }}
+          path: AiraBot-${GITHUB_REF_NAME#v}-${{ matrix.platform }}.tar.gz
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v3
+        with:
+          path: artifacts
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: AiraBot ${{ github.ref_name }}
+          body: |
+            WhatsApp Bot dengan integrasi OpenAI API
+            Versi: ${{ github.ref_name }}
+            Dibangun untuk:
+            - linux/amd64
+            - linux/arm64
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Assets
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./artifacts/AiraBot-linux-amd64/AiraBot-${GITHUB_REF_NAME#v}-linux-amd64.tar.gz
+          asset_name: AiraBot-${GITHUB_REF_NAME#v}-linux-amd64.tar.gz
+
+      - name: Upload Release Assets ARM64
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./artifacts/AiraBot-linux-arm64/AiraBot-${GITHUB_REF_NAME#v}-linux-arm64.tar.gz
+          asset_name: AiraBot-${GITHUB_REF_NAME#v}-linux-arm64.tar.gz
