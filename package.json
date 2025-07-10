@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "WhatsApp Bot with Play, AI, and Fun Features",
   "main": "index.js",
-  "bin": "index.js",
+  "bin": {
+    "aira-bot": "index.js"
+  },
   "scripts": {
     "start": "node index.js"
   },
