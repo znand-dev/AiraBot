@@ -111,8 +111,8 @@ Go to WhatsApp > Linked Devices > Scan QR
 
 ### Troubleshooting
 
-1. If you encounter `need to sign in` error, open YouTube in your browser and export cookies to a `cookies.txt` file in the root directory. Then restart the bot.
-2. If the QR Code keeps reappearing after login, delete the `.wwebjsauth` and `.wwebjs_cache` directories.
+1. If you encounter `YT-DLP Error: ERROR: [youtube] tOMFR0nQt48: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication` . Open YouTube in your browser and export cookies to a `cookies.txt` file in the root directory. Then restart the bot.
+2. If the QR Code keeps reappearing after login, delete the `.wwebjs_auth` and `.wwebjs_cache` directories.
 
 ---
 
