@@ -1,3 +1,11 @@
+# .github/workflows/release.yml
+name: Build & Release AiraBot Binary
+
+on:
+  push:
+    tags:
+      - 'v*'
+
 jobs:
   build:
     runs-on: ubuntu-latest
