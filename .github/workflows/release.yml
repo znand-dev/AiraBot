@@ -1,5 +1,4 @@
-# .github/workflows/release.yml
-name: Build & Release AiraBot Binary
+name: Build & Release AiraBot
 
 on:
   push:
@@ -9,13 +8,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-target:
           - node18-linux-x64
           - node18-linux-arm64
-
+          - node18-linux-armv7
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
@@ -23,7 +21,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: 18
 
       - name: Install dependencies
         run: npm install
@@ -35,23 +33,13 @@ jobs:
         run: |
           mkdir -p dist
           pkg . --targets ${{ matrix.node-target }} --output dist/airabot-${{ matrix.node-target }}
-
-      - name: Generate checksum
-        run: |
-          cd dist
-          sha256sum airabot-* > checksum.txt
+          sha256sum dist/airabot-* > dist/checksum.txt
 
       - name: Upload release
-        uses: ncipollo/release-action@v1
+        uses: softprops/action-gh-release@v2
         with:
-          tag: ${{ github.ref_name }}
-          name: AiraBot ${{ github.ref_name }}
-          body: |
-            🛠️ Auto Release AiraBot via GitHub Actions
-            ✅ Built with pkg for ${{ matrix.node-target }}
-          artifacts: |
-            dist/airabot-*
+          files: |
+            dist/airabot-${{ matrix.node-target }}
             dist/checksum.txt
-          allowUpdates: true
-          removeArtifacts: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
