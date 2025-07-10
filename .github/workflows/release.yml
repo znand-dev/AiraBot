@@ -10,9 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-target:
-          - node18-linux-amd64
-          - node18-linux-arm64
+        include:
+          - target: node18-linux-x64
+            arch: amd64
+          - target: node18-linux-arm64
+            arch: arm64
+          - target: node18-linux-armv7
+            arch: armv7
 
     steps:
       - name: Checkout source
