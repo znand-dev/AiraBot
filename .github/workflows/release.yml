@@ -16,7 +16,6 @@ jobs:
         target:
           - node18-linux-x64
           - node18-linux-arm64
-          - node18-linux-armv6
 
     steps:
       - name: Checkout repo
