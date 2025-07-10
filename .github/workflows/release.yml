@@ -14,9 +14,10 @@ jobs:
       - run: npm install
       - run: npm install -g pkg
       - run: |
-          mkdir dist
-          pkg . --targets node18-linux-x64 --out-path dist
+         mkdir -p dist
+         ARCH=$(echo "${{ matrix.node-target }}" | sed 's/node18-linux-//')
+         pkg . --targets ${{ matrix.node-target }} --output dist/airabot-linux-${ARCH}
       - uses: softprops/action-gh-release@v2
         with:
-          files: dist/*
+          files: dist/airabot-linux-${{ matrix.node-target }}
         env: { GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} }
