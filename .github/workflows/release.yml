@@ -1,88 +1,46 @@
-name: Build and Release AiraBot
+# .github/workflows/release.yml
+name: Build & Release AiraBot Binary
 
 on:
   push:
     tags:
-      - 'v*' # Trigger on version tags (v1.0.0, etc)
+      - 'v*'
 
 jobs:
   build:
+    name: Build binaries
+    runs-on: ubuntu-latest
+
     strategy:
       matrix:
-        platform: [linux-amd64, linux-arm64]
-    runs-on: ubuntu-latest
+        target:
+          - node18-linux-x64
+          - node18-linux-arm64
+          - node18-linux-armv6
+
     steps:
-      - name: Checkout code
+      - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: '18'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
-      - name: Build project (if any)
-        run: npm run build
+      - name: Install pkg globally
+        run: npm install -g pkg
 
-      - name: Package artifacts
+      - name: Build with pkg
         run: |
-          mkdir -p AiraBot-${GITHUB_REF_NAME#v}-${{ matrix.platform }}
-          cp -r index.js commands lib node_modules package.json package-lock.json .env.example README.md airabot.service AiraBot-${GITHUB_REF_NAME#v}-${{ matrix.platform }}/
-          tar -czvf AiraBot-${GITHUB_REF_NAME#v}-${{ matrix.platform }}.tar.gz AiraBot-${GITHUB_REF_NAME#v}-${{ matrix.platform }}
+          mkdir -p dist
+          pkg . --targets ${{ matrix.target }} --output dist/airabot-${{ matrix.target }}
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
+      - name: Upload binaries to GitHub Release
+        uses: softprops/action-gh-release@v2
         with:
-          name: AiraBot-${{ matrix.platform }}
-          path: AiraBot-${GITHUB_REF_NAME#v}-${{ matrix.platform }}.tar.gz
-          retention-days: 5
-
-  release:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Download all artifacts
-        uses: actions/download-artifact@v4
-        with:
-          path: artifacts
-
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v2
+          files: dist/*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: AiraBot ${{ github.ref_name }}
-          body: |
-            WhatsApp Bot with OpenAI API integration
-            Version: ${{ github.ref_name }}
-            Built for:
-            - linux/amd64
-            - linux/arm64
-          draft: false
-          prerelease: false
-
-      - name: Upload Release Assets
-        uses: actions/upload-release-asset@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./artifacts/AiraBot-linux-amd64/AiraBot-${GITHUB_REF_NAME#v}-linux-amd64.tar.gz
-          asset_name: AiraBot-${GITHUB_REF_NAME#v}-linux-amd64.tar.gz
-
-      - name: Upload Release Assets ARM64
-        uses: actions/upload-release-asset@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./artifacts/AiraBot-linux-arm64/AiraBot-${GITHUB_REF_NAME#v}-linux-arm64.tar.gz
-          asset_name: AiraBot-${GITHUB_REF_NAME#v}-linux-arm64.tar.gz
