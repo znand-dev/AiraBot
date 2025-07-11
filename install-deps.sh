@@ -21,3 +21,14 @@ sudo apt install -y \
   libx11-xcb1 \
   libxcb-dri3-0 \
   libxtst6
+  
+# Update package list
+sudo apt update
+
+# Install ffmpeg & Python3-pip
+sudo apt install -y ffmpeg python3-pip
+
+# Install yt-dlp via pip
+pip install yt-dlp
+
+echo "✅ All dependencies installed!"
