@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  airabot:
+    image: ghcr.io/znand-dev/airabot:latest
+    container_name: airabot
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./media:/app/media
+      - ./.wwebjs_auth:/app/.wwebjs_auth
