@@ -1,5 +1,5 @@
 # Dockerfile
-FROM node:18-slim
+FROM node:22-slim
 
 # App dir
 WORKDIR /app
