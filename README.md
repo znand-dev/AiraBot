@@ -111,9 +111,9 @@ Masuk ke WhatsApp > Perangkat tertaut > Scan QR
 ---
 ### Perbaikan masalah
 
-1. Jika kamu mengalami masalah saat start, berupa `need to sign in` silakan buka yt di https://youtube.com dan export cookies ke cookies.txt di root directory, lalu restart kembali.
+1. Jika kamu mengalami masalah saat start, berupa `YT-DLP Error: ERROR: [youtube] tOMFR0nQt48: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication` silakan buka yt di https://youtube.com dan export cookies ke cookies.txt di root directory, lalu restart kembali.
 2. Jika kamu mengalami masalah saat start `node index.js` berupa QR Code kembali muncul padahal sebelumnya sudah login.
-ssilakan hapus `.wwebjsauth` dan `.wwebjs_cache`
+ssilakan hapus `.wwebjs_auth` dan `.wwebjs_cache`
 
 ---
 
@@ -128,12 +128,11 @@ ssilakan hapus `.wwebjsauth` dan `.wwebjs_cache`
 
 - Built by [znand-dev](https://github.com/znand-dev)
 - Powered by [whatsapp-web.js](https://github.com/pedroslopez/whatsapp-web.js)
-- OpenAI via [OpenRouter](https://openrouter.ai)
-- YouTube download via [yt-dlp](https://github.com/yt-dlp/yt-dlp)
+- OpenAI API [OpenAI](https://platform.openai.com)
+- YouTube Downloader [yt-dlp](https://github.com/yt-dlp/yt-dlp)
 
 ---
 
 ### License
 
 MIT License – Feel free to fork, modify, and contribute.
-
