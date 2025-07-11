@@ -5,7 +5,7 @@ spinner() {
   local pid=$!
   local delay=0.1
   local spinstr='|/-\'
-  while [ "$(ps a | awk '{print $1}' | grep $pid)" ]; do
+  while kill -0 $pid 2>/dev/null; do
     local temp=${spinstr#?}
     printf " [%c]  " "$spinstr"
     local spinstr=$temp${spinstr%"$temp"}
@@ -15,15 +15,16 @@ spinner() {
   printf "    \b\b\b\b"
 }
 
-# Function with spinner wrapper
+# Function with silent install and spinner
 run_with_spinner() {
-  echo -n "$1..."
+  echo "INFO - $1..."
   shift
-  ("$@") & spinner
-  echo "Done!"
+  ("$@" > /dev/null 2>&1) & spinner
+  echo "✅ Done!"
 }
 
-echo "INFO: Starting AiraBot dependency installation..."
+echo "INFO - Starting AiraBot dependency installation"
+echo "INFO - Installing dependencies, please wait..."
 
 # Step 1: Update packages
 run_with_spinner "Updating package list" sudo apt update -y
@@ -41,4 +42,4 @@ run_with_spinner "Installing ffmpeg & pip3" sudo apt install -y ffmpeg python3-p
 # Step 4: Install yt-dlp
 run_with_spinner "Installing yt-dlp via pip" pip install yt-dlp
 
-echo "INFO: All dependencies installed successfully!"
+echo "INFO - All dependencies installed successfully!"
