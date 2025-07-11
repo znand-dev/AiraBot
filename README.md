@@ -66,8 +66,6 @@ npm install
 ```bash
 chmod +x install-deps.sh
 ./install-deps.sh
-sudo apt install ffmpeg -y
-pip install yt-dlp
 ```
 
 3. **Salin file `.env` dan isi API Key:**
@@ -85,7 +83,7 @@ AI_SYSTEM_PROMPT=Kamu adalah asisten AI khusus di WhatsApp yang sopan dan helpfu
 PARSE_JSON=false
 ```
 
-Sesuaikan `sk-xxxxxxxxxxxxxxxxxxxx` dengan API_Key kalian
+Sesuaikan `sk-xxxxxxxxxxxxxxxxxxxx` dengan API Key kalian
 
 4. **Jalankan bot-nya:**
 
