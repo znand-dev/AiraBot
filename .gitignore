@@ -3,9 +3,11 @@ node_modules/
 
 # Env & session auth
 .env
-.env.example
 .session/
 *.session.json
+.wwebjs_auth/
+.wwebjs_cache/
+session_data/ 
 
 # Media/temp file
 media/
@@ -19,6 +21,3 @@ tmp/
 # OS generated files
 .DS_Store
 Thumbs.db
-
-.wwebjs_auth/
-.wwebjs_cache/

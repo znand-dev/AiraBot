@@ -32,7 +32,13 @@ const fs = require('fs');
 require('dotenv').config();
 
 const client = new Client({
-    authStrategy: new LocalAuth()
+    authStrategy: new LocalAuth({
+        dataPath: './session_data' // folder khusus buat simpan session
+    }),
+    puppeteer: {
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+    }
 });
 
 client.on('qr', qr => qrcode.generate(qr, { small: true }));
