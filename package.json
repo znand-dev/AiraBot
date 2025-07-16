@@ -20,10 +20,10 @@
   "author": "znand-dev",
   "license": "MIT",
   "dependencies": {
+    "@wppconnect-team/wppconnect": "^1.37.3",
     "dotenv": "^17.2.0",
-    "openai": "^5.0.0",
-    "qrcode-terminal": "^0.12.0",
-    "whatsapp-web.js": "^1.22.1"
+    "openai": "^5.9.0",
+    "qrcode-terminal": "^0.12.0"
   },
   "pkg": {
     "scripts": "index.js",

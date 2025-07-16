@@ -13,9 +13,6 @@ module.exports = {
 🎵 *Musik*:
 - \`!play [judul lagu]\` → download & kirim lagu YouTube
 
-🧪 *Testing*:
-- \`!testsend\` → kirim file test.mp3
-
 📜 *Menu*:
 - \`!menu\` → tampilkan menu ini
 

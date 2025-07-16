@@ -8,6 +8,7 @@ node_modules/
 .wwebjs_auth/
 .wwebjs_cache/
 session_data/ 
+tokens/
 
 # Media/temp file
 media/

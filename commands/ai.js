@@ -4,9 +4,11 @@ const { aiClient } = require('../lib/aiClient');
 module.exports = {
   name: "ai",
   description: "Ngobrol bareng AI",
-  async execute(client, msg, args) {
+  async execute(client, message, args) {
     const prompt = args.join(" ");
-    if (!prompt) return msg.reply("❌Error: Masukin teks dong buat ngobrol ama AI");
+    if (!prompt) {
+      return client.sendText(message.from, "❌Error: Masukin teks cuyy buat ngobrol ama AI");
+    }
 
     try {
       const response = await aiClient.chat.completions.create({
@@ -14,17 +16,17 @@ module.exports = {
         messages: [
           {
             role: "system",
-            content: process.env.AI_SYSTEM_PROMPT, // ⬅️ Pure dari .env, tanpa default
+            content: process.env.AI_SYSTEM_PROMPT,
           },
           { role: "user", content: prompt },
         ],
       });
 
       const reply = response.choices[0].message.content;
-      await msg.reply(`🧠 ${reply}`);
+      await client.sendText(message.from, `${reply}`);
     } catch (err) {
       console.error("❌ Error AI:", err);
-      await msg.reply("❌ Error cuyy, AI-nya lagi mabok.");
+      await client.sendText(message.from, "❌Error: Reply error cuyy, AI nya lagi mabok.");
     }
   },
 };
