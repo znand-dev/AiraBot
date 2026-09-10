@@ -20,7 +20,7 @@
   "author": "znand-dev",
   "license": "MIT",
   "dependencies": {
-    "@wppconnect-team/wppconnect": "^1.37.3",
+    "@wppconnect-team/wppconnect": "^2.0.0",
     "dotenv": "^17.2.0",
     "openai": "^5.9.0",
     "qrcode-terminal": "^0.12.0"
